@@ -72,18 +72,24 @@ const server = serve({
             });
         }
 
+        // Serve generated images from the /outputs directory
+        if (url.pathname.startsWith("/outputs/") && req.method === "GET") {
+            const imagePath = path.join(process.cwd(), url.pathname);
+
+            try {
+                const fileData = readFileSync(imagePath);
+                return new Response(fileData, {
+                    headers: { "Content-Type": "image/png" }, // Adjust content-type if needed
+                });
+            } catch (error) {
+                console.error("Error reading file:", error);
+                return new Response("File not found", { status: 404 });
+            }
+        }
+
         // Handle requests to serve generated images
         if (url.pathname.startsWith("/generated") && req.method === "GET") {
-            // Get the home directory or user profile directory
-            const homeDir = process.env.HOME || process.env.USERPROFILE;
 
-            // Ensure homeDir is a string
-            if (!homeDir) {
-                console.error("Error: HOME or USERPROFILE environment variable is not set.");
-                return new Response("Internal Server Error: Environment variable missing", { status: 500 });
-            }
-
-            const filePath = path.join(homeDir, "Desktop", url.pathname.replace("/generated", ""));
             try {
                 const fileData = readFileSync(filePath);
                 return new Response(fileData, {
@@ -131,12 +137,6 @@ const server = serve({
                 const imageUrl = output[0] as string;
                 console.log("Output URL:", imageUrl);
 
-                // Ensure homeDir is defined for non-debug cases
-                const homeDir = process.env.HOME || process.env.USERPROFILE;
-                if (!homeDir) {
-                    throw new Error("HOME or USERPROFILE environment variable is not set.");
-                }
-
                 // Save in the current script directory + 'outputs/'
                 const timestamp = new Date().toISOString().replace(/[-:.]/g, "");
                 const fileName = `replicate_${timestamp}.png`;
@@ -149,7 +149,7 @@ const server = serve({
                 await downloadFile(imageUrl, outputPath);
 
                 // Return both image URL and local path
-                return Response.json({ imageUrl, localPath: `/generated/${fileName}` });
+                return Response.json({ imageUrl, localPath: `/outputs/${fileName}` });
             } catch (error) {
                 console.error("Error generating image:", error);
                 return Response.json({ error: (error as Error).message }, { status: 500 });
