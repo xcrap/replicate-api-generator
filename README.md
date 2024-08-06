@@ -1,4 +1,4 @@
-Replicate API Generator
+# Replicate API Generator
 The **Replicate API Generator** is a small TS/BUN script that display a simple UI to leverage the [Replicate API](https://replicate.com/) to generate images using the "Flux [Schnell]" model.
 
 ![Screenshot](screenshot.png "Screenshot")
