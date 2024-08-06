@@ -30,11 +30,10 @@ bun run dev
 
 Access the application at http://localhost:3000. (Or whatever port you specified in the .env file)
 
-&nbsp;
 ### Possible TODO List
 - Make a proper UI
 - Add schema support to load additional image models
 - Add a lightbox to the generated images
 - Add a option to delete the generated or all generated images
-- Add a option copy a generated proerty to prompt input
+- Add a option copy a generated images prompts to prompt input
 - Cancel Job Training

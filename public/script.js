@@ -37,7 +37,7 @@ document.getElementById("generateForm").addEventListener("submit", async (e) => 
         </div>
         <span class="mt-4 text-xs uppercase">Queue position: ${queueCount}</span></div>`;
 
-    generatedImagesDiv.appendChild(imageContainer, generatedImagesDiv.firstChild);
+    generatedImagesDiv.insertBefore(imageContainer, generatedImagesDiv.firstChild);
 
     try {
         const response = await fetch("/generate", {
