@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flux Schnell Replicate Generator</title>
+    <link href="styles.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Flux Schnell Replicate Generator</h1>
+        <form id="generateForm" class="bg-white shadow-xs rounded-lg px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="prompt">Enter your prompt</label>
+                <textarea id="prompt" name="prompt" rows="4" required autofocus class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            </div>
+            <div class="mb-4">
+                <span class="block text-gray-700 text-sm font-bold mb-2">Select Aspect Ratio</span>
+                <div class="flex items-center gap-4">
+                    <button type="button" data-ratio="9:16" class="aspect-button aspect-[9/16] h-20 block bg-blue-700 text-white hover:text-white text-xs rounded focus:outline-none focus:shadow-outline">9:16</button>
+                    <button type="button" data-ratio="1:1" class="aspect-button aspect-[1/1] h-12 block bg-gray-300 hover:bg-gray-400 text-black hover:text-white text-xs rounded focus:outline-none focus:shadow-outline">1:1</button>
+                    <button type="button" data-ratio="16:9" class="aspect-button aspect-[16/9] h-8 block bg-gray-300 hover:bg-gray-400 text-black hover:text-white text-xs rounded focus:outline-none focus:shadow-outline">16:9</button>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Generate Image</button>
+            </div>
+        </form>
+        <div id="generatedImages" class="flex flex-wrap gap-4 justify-center"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
