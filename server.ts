@@ -43,7 +43,7 @@ function generatePlaceholderUrl(aspectRatio: string): string {
         }
     }
 
-    return `https://via.placeholder.com/${width}x${height}.png?text=Placeholder+Image`;
+    return `https://picsum.photos/${width}/${height}/`;
 }
 
 // Function to delay execution for a specified number of milliseconds
