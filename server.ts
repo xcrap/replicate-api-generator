@@ -87,20 +87,6 @@ const server = serve({
             }
         }
 
-        // Handle requests to serve generated images
-        if (url.pathname.startsWith("/generated") && req.method === "GET") {
-
-            try {
-                const fileData = readFileSync(filePath);
-                return new Response(fileData, {
-                    headers: { "Content-Type": "image/png" }, // Adjust content-type if needed
-                });
-            } catch (error) {
-                console.error("Error reading file:", error);
-                return new Response("File not found", { status: 404 });
-            }
-        }
-
         // Handle image generation request
         if (url.pathname === "/generate" && req.method === "POST") {
             try {
