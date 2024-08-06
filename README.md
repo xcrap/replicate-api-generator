@@ -3,7 +3,6 @@ The **Flux Schnell Replicate Generator** is a small TS/BUN script that display a
 
 [![Screenshot-2024-08-06-at-04-39-55.png](https://i.postimg.cc/15xpJVRT/Screenshot-2024-08-06-at-04-39-55.png)](https://postimg.cc/JtqDhnkc)
 
-&nbsp;
 ## Requirements
 - [Bun](https://bun.sh/) installed on your system.
 - A valid Replicate API token.
