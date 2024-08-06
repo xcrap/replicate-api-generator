@@ -2,6 +2,9 @@
 export default {
     content: ["./public/*.html", "./public/*.js"],
     theme: {
+        fontFamily: {
+            sans: ['Roboto'],
+        },
         extend: {},
     },
     plugins: [],
