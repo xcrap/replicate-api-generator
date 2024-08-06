@@ -10,7 +10,7 @@ The **Flux Schnell Replicate Generator** is a small TS/BUN script that display a
 ## Setup
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/xcrap/flux-schnell-replicate-generator.git
+git clone https://github.com/xcrap/replicate-api-generator.git
 cd flux-schnell-replicate-generator
 ```
 ### 2. Rename the .env.example file to .env and add your Replicate API token:
