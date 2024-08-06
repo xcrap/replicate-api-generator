@@ -47,6 +47,11 @@ function generatePlaceholderUrl(aspectRatio: string): string {
     return `https://via.placeholder.com/${width}x${height}.png?text=Placeholder+Image`;
 }
 
+// Function to delay execution for a specified number of milliseconds
+function delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 // Set up a server using Bun's serve API
 const server = serve({
     port: process.env.PORT || 3000, // Use environment variable PORT or default to 3000
@@ -99,6 +104,9 @@ const server = serve({
 
                     // Generate a placeholder image URL based on the aspect ratio
                     const placeholderImageUrl = generatePlaceholderUrl(aspectRatio);
+
+                    // Introduce a 1-second delay before responding
+                    await delay(1000);
 
                     // Return placeholder image URL for both imageUrl and localPath
                     return Response.json({ imageUrl: placeholderImageUrl, localPath: placeholderImageUrl });
