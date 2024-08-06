@@ -27,7 +27,7 @@ document.getElementById("generateForm").addEventListener("submit", async (e) => 
 
     queueCount++;
     const imageContainer = document.createElement("div");
-    imageContainer.className = "w-48 block bg-white rounded-lg flex flex-col justify-center items-center p-2";
+    imageContainer.className = "w-full block bg-white rounded-lg flex flex-col justify-center items-center p-2";
     imageContainer.innerHTML = `<div class="w-full h-full flex flex-col items-center justify-center p-4">
         <div role="status">
             <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
