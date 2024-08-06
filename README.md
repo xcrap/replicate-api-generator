@@ -1,6 +1,8 @@
 # Flux Schnell Replicate Generator
 The **Flux Schnell Replicate Generator** is a small TS/BUN script that display a simple UI to leverage the [Replicate API](https://replicate.com/) to generate images using the "Flux [Schnell]" model.
 
+[![Screenshot-2024-08-06-at-04-39-55.png](https://i.postimg.cc/15xpJVRT/Screenshot-2024-08-06-at-04-39-55.png)](https://postimg.cc/JtqDhnkc)
+
 &nbsp;
 ## Requirements
 - [Bun](https://bun.sh/) installed on your system.
