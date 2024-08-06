@@ -1,9 +1,8 @@
-import { serve } from "bun";
-import Replicate from "replicate";
-import { file, write } from "bun";
-import { mkdir } from "node:fs/promises";
+import { file, serve, write } from "bun";
 import { readFileSync } from "node:fs";
+import { mkdir } from "node:fs/promises";
 import path from "node:path";
+import Replicate from "replicate";
 
 // Initialize Replicate with API token from environment variables
 const replicate = new Replicate({
