@@ -109,6 +109,7 @@ const server = serve({
                     output_quality: 100,
                     disable_safety_checker: true,
                     aspect_ratio: aspectRatio,
+                    output_format: 'png'
                 };
 
                 // Use the correct replicate.run() method for the model
