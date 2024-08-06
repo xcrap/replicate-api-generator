@@ -7,8 +7,7 @@ The **Flux Schnell Replicate Generator** is a small TS/BUN script that display a
 - [Bun](https://bun.sh/) installed on your system.
 - A valid Replicate API token.
 
-&nbsp;
-### Setup
+## Setup
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/xcrap/flux-schnell-replicate-generator.git
