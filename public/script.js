@@ -1,24 +1,4 @@
 let queueCount = 0;
-let selectedAspectRatio = "9:16"; // Default aspect ratio
-
-// Add event listeners to aspect ratio buttons
-const buttons = document.querySelectorAll(".aspect-button");
-for (const button of buttons) {
-    button.addEventListener("click", () => {
-        // Remove active class from all buttons
-        for (const btn of buttons) {
-            btn.classList.remove("bg-blue-700", "text-white");
-            btn.classList.add("bg-gray-300", "hover:bg-gray-400", "text-black");
-        }
-
-        // Add active class to the clicked button
-        button.classList.add("active", "bg-blue-500", "hover:bg-blue-700", "text-white");
-        button.classList.remove("bg-gray-300", "hover:bg-gray-400", "text-black");
-
-        // Update selected aspect ratio
-        selectedAspectRatio = button.getAttribute("data-ratio");
-    });
-}
 
 document.getElementById("generateForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -74,4 +54,116 @@ document.getElementById("generateForm").addEventListener("submit", async (e) => 
     } finally {
         queueCount--;
     }
+});
+
+
+
+// Aspect Ratio Code
+let selectedAspectRatio = "9:16"; // Default aspect ratio
+
+// Define the aspect ratio options
+const ratios = [
+    { ratio: '9:21', height: 'h-20', aspect: 'aspect-[9/21]' },
+    { ratio: '9:16', height: 'h-16', aspect: 'aspect-[9/16]' },
+    { ratio: '2:3', height: 'h-14', aspect: 'aspect-[2/3]' },
+    { ratio: '4:5', height: 'h-14', aspect: 'aspect-[4/5]' },
+    { ratio: '1:1', height: 'h-12', aspect: 'aspect-[1/1]' },
+    { ratio: '5:4', height: 'h-11', aspect: 'aspect-[5/4]' },
+    { ratio: '3:2', height: 'h-10', aspect: 'aspect-[3/2]' },
+    { ratio: '16:9', height: 'h-9', aspect: 'aspect-[16/9]' },
+    { ratio: '21:9', height: 'h-8', aspect: 'aspect-[21/9]' },
+];
+
+class AspectRatioDropdown {
+    constructor(containerId) {
+        this.container = document.getElementById(containerId);
+        if (!this.container) throw new Error(`Container with id "${containerId}" not found`);
+
+        this.selectedRatio = '9:16'; // Default ratio
+        this.isOpen = false;
+
+        this.render();
+        this.initializeEventListeners();
+    }
+
+    render() {
+        this.container.innerHTML = `
+            <div class="relative inline-block text-left">
+                <button type="button" id="aspect-ratio-button" class="bg-gray-50 hover:bg-gray-100 text-black px-4 py-2 text-sm uppercase focus:outline-none transition rounded">
+                    ${this.selectedRatio}
+                </button>
+                <div id="aspect-ratio-options" class="absolute mt-2 bg-white rounded-md border border-gray-100 shadow-sm z-10 hidden">
+                    <div class="p-4 flex items-center gap-2">
+                        ${ratios.map(option => `
+                            <button type="button" class="aspect-button ${option.height} ${option.aspect} flex items-center justify-center p-2 text-xs rounded focus:outline-none focus:ring-2 focus:ring-blue-300 transition ${this.selectedRatio === option.ratio ? 'bg-blue-500 text-white' : 'bg-gray-300 hover:bg-gray-400 text-black'}"
+                                    data-ratio="${option.ratio}">
+                                ${option.ratio}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        this.buttonElement = this.container.querySelector('#aspect-ratio-button');
+        this.optionsElement = this.container.querySelector('#aspect-ratio-options');
+    }
+
+    initializeEventListeners() {
+        this.buttonElement.addEventListener('click', () => this.toggleDropdown());
+
+        // Use your existing button click logic
+        const buttons = this.optionsElement.querySelectorAll(".aspect-button");
+        for (const button of buttons) {
+            button.addEventListener("click", () => {
+                // Remove active class from all buttons
+                for (const btn of buttons) {
+                    btn.classList.remove("bg-blue-700", "text-white");
+                    btn.classList.add("bg-gray-300", "hover:bg-gray-400", "text-black");
+                }
+                // Add active class to the clicked button
+                button.classList.add("active", "bg-blue-500", "hover:bg-blue-700", "text-white");
+                button.classList.remove("bg-gray-300", "hover:bg-gray-400", "text-black");
+                // Update selected aspect ratio
+                this.selectRatio(button.getAttribute("data-ratio"));
+            });
+        }
+
+        document.addEventListener('click', (event) => this.handleClickOutside(event));
+    }
+
+    toggleDropdown() {
+        this.isOpen = !this.isOpen;
+        this.optionsElement.classList.toggle('hidden', !this.isOpen);
+    }
+
+    handleClickOutside(event) {
+        if (!this.container.contains(event.target) && this.isOpen) {
+            this.isOpen = false;
+            this.optionsElement.classList.add('hidden');
+        }
+    }
+
+    selectRatio(ratio) {
+        this.selectedRatio = ratio;
+        this.buttonElement.textContent = `${ratio}`;
+        this.isOpen = false;
+        this.optionsElement.classList.add('hidden');
+        // Dispatch a custom event to notify about the ratio change
+        this.container.dispatchEvent(new CustomEvent('ratioChange', { detail: { ratio: this.selectedRatio } }));
+    }
+
+    getSelectedRatio() {
+        return this.selectedRatio;
+    }
+}
+
+// Initialize the aspect ratio dropdown
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdown = new AspectRatioDropdown('aspect-ratio-container');
+    // Listen for ratio changes
+    document.getElementById('aspect-ratio-container').addEventListener('ratioChange', (event) => {
+        // Update your application state or perform any necessary actions here
+        selectedAspectRatio = event.detail.ratio; // Update the global selectedAspectRatio variable
+    });
 });
