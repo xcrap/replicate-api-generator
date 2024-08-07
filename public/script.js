@@ -59,9 +59,6 @@ document.getElementById("generateForm").addEventListener("submit", async (e) => 
 
 
 // Aspect Ratio Code
-let selectedAspectRatio = "9:16"; // Default aspect ratio
-
-// Define the aspect ratio options
 const ratios = [
     { ratio: '9:21', height: 'h-20', aspect: 'aspect-[9/21]' },
     { ratio: '9:16', height: 'h-16', aspect: 'aspect-[9/16]' },
