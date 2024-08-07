@@ -89,13 +89,13 @@ class AspectRatioDropdown {
     render() {
         this.container.innerHTML = `
             <div class="relative inline-block text-left">
-                <button type="button" id="aspect-ratio-button" class="bg-gray-50 hover:bg-gray-100 text-black px-4 py-2 text-sm uppercase focus:outline-none transition rounded">
+                <button type="button" id="aspect-ratio-button" class="bg-gray-50 hover:bg-gray-100 text-gray-500 px-4 py-2 text-sm uppercase focus:outline-none transition rounded">
                     ${this.selectedRatio}
                 </button>
                 <div id="aspect-ratio-options" class="absolute mt-2 bg-white rounded-md border border-gray-100 shadow-sm z-10 hidden">
                     <div class="p-4 flex items-center gap-2">
                         ${ratios.map(option => `
-                            <button type="button" class="aspect-button ${option.height} ${option.aspect} flex items-center justify-center p-2 text-xs rounded focus:outline-none focus:ring-2 focus:ring-blue-300 transition ${this.selectedRatio === option.ratio ? 'bg-blue-500 text-white' : 'bg-gray-300 hover:bg-gray-400 text-black'}"
+                            <button type="button" class="aspect-button ${option.height} ${option.aspect} flex items-center justify-center p-2 text-xs rounded focus:outline-none focus:ring-2 focus:ring-blue-300 transition ${this.selectedRatio === option.ratio ? 'bg-blue-500 text-white' : 'bg-gray-50 hover:bg-gray-100 text-black'}"
                                     data-ratio="${option.ratio}">
                                 ${option.ratio}
                             </button>
@@ -118,12 +118,12 @@ class AspectRatioDropdown {
             button.addEventListener("click", () => {
                 // Remove active class from all buttons
                 for (const btn of buttons) {
-                    btn.classList.remove("bg-blue-700", "text-white");
-                    btn.classList.add("bg-gray-300", "hover:bg-gray-400", "text-black");
+                    btn.classList.remove("bg-blue-500", "text-white");
+                    btn.classList.add("bg-gray-50", "hover:bg-gray-100", "text-black");
                 }
                 // Add active class to the clicked button
                 button.classList.add("active", "bg-blue-500", "hover:bg-blue-700", "text-white");
-                button.classList.remove("bg-gray-300", "hover:bg-gray-400", "text-black");
+                button.classList.remove("bg-gray-50", "hover:bg-gray-100", "text-black");
                 // Update selected aspect ratio
                 this.selectRatio(button.getAttribute("data-ratio"));
             });
