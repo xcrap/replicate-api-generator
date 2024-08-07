@@ -66,12 +66,12 @@ const ratios = [
     { ratio: '9:21', height: 'h-20', aspect: 'aspect-[9/21]' },
     { ratio: '9:16', height: 'h-16', aspect: 'aspect-[9/16]' },
     { ratio: '2:3', height: 'h-14', aspect: 'aspect-[2/3]' },
-    { ratio: '4:5', height: 'h-14', aspect: 'aspect-[4/5]' },
-    { ratio: '1:1', height: 'h-12', aspect: 'aspect-[1/1]' },
-    { ratio: '5:4', height: 'h-11', aspect: 'aspect-[5/4]' },
-    { ratio: '3:2', height: 'h-10', aspect: 'aspect-[3/2]' },
-    { ratio: '16:9', height: 'h-9', aspect: 'aspect-[16/9]' },
-    { ratio: '21:9', height: 'h-8', aspect: 'aspect-[21/9]' },
+    { ratio: '4:5', height: 'h-12', aspect: 'aspect-[4/5]' },
+    { ratio: '1:1', height: 'h-11', aspect: 'aspect-[1/1]' },
+    { ratio: '5:4', height: 'h-10', aspect: 'aspect-[5/4]' },
+    { ratio: '3:2', height: 'h-9', aspect: 'aspect-[3/2]' },
+    { ratio: '16:9', height: 'h-8', aspect: 'aspect-[16/9]' },
+    { ratio: '21:9', height: 'h-7', aspect: 'aspect-[21/9]' },
 ];
 
 class AspectRatioDropdown {
